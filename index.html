@@ -96,6 +96,11 @@ transition:1s;
 transform:translateY(-120%);
 }
 
+.abrir .selloSheriff{
+opacity:0;
+transform:translate(-50%,-50%) scale(2);
+}
+
 .textoSobre{
 position:absolute;
 bottom:30px;
@@ -112,15 +117,16 @@ text-shadow:
 
 .selloSheriff{
 position:absolute;
-top:130px;
-left:1040px;
-trasnform:translate(-50%,-50%);
+top:55%;
+left:50%;
+transform: translate(-50%,-50%);
 font-size:60px;
 color:gold;
 text-shadow:
 0 0 5px #fff,
 0 0 10px #ffd700,
 0 0 20px #ffcc00;
+transition:.4s;
 }
 
 /* POLVO MAGICO */
@@ -281,7 +287,7 @@ margin-top:10px;
 
 .reloj{
 font-size:50px;
-font-family:'cooper black';
+font-family:'Rye';
 color:#FF1493;
 box-shadow:none;
 
@@ -289,7 +295,7 @@ box-shadow:none;
 
 .lugar{
 font-size:50px;
-font-family:'cooper black';
+font-family:'Rye';
 color:#FF1493;
 box-shadow:none;
 }
@@ -333,18 +339,36 @@ font-size:12px;
 width:90%;
 max-width:620px;
 height:420px;
-margin:20px auto 10px auto;
-padding:12px;
-background:black;
-border-radius:20px;
-box-shadow:0 12px 30px rgba(0,0,0,0.3);
+margin:25px auto 20px auto;
+padding:15px;
+
+background:linear-gradient(180deg,#ffe8b0,#f4c97c,#d79a43);
+
+border-radius:22px;
+border:6px solid #4b2e14;
+
+box-shadow:
+0 10px 0 #2f1c0d,
+0 20px 40px rgba(0,0,0,0.4);
+
 overflow:hidden;
+position:relative;
+}
+
+/* MARCO DECORATIVO */
+.map::before{
+content:"";
+position:absolute;
+inset:8px;
+border:3px dashed rgba(90,50,20,.5);
+border-radius:15px;
+pointer-events:none;
 }
 
 .decoracion{
 width:600px;
-margin: 0 auto 20px auto;
-display block;
+margin:0 auto 20px auto;
+display:block;
 }
 
 /* BOTONES */
@@ -425,15 +449,17 @@ height:240px;
 }
 
 .textoSobre{
-font-size:24px;                                /*AQUI*/
-top:10%;
-right:35%;
+font-size:24px;
+top:15%;
+left:50%;
+transform:translateX(-50%);
 }
 
 .selloSheriff{
 font-size:45px;
-top:40%;
-right:50%;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
 }
 
 /* TITULOS */
@@ -464,7 +490,7 @@ font-size:38px;
 
 .wanted img{
 width:95%;
-height:620px;
+height:720px;
 object-fit:fill;
 }
 
@@ -502,6 +528,7 @@ height:350px;
 /* DECORACION */
 .decoracion{
 width:90%;
+max-width:600px;
 }
 
 /* BOTONES */
@@ -524,16 +551,9 @@ font-size:60px;
 .graciasTexto{
 font-size:42px;
 }
-
-}
-
-@media (max-width:700px){
-
-body{
 background-size:120%;
 background-position:center top;
-}
-
+-webkit-overflow-scrolling:touch;
 }
 
 /* FUEGOS ARTIFICIALES DISNEY */
@@ -555,7 +575,10 @@ opacity:1;
 transform:translate(var(--x),var(--y)) scale(1.8);
 opacity:0;
 }
+}
 
+
+/* TEXTO GRACIAS */
 .graciasTexto{
 font-family:'Rye',cursive;
 font-size:70px;
@@ -567,6 +590,16 @@ text-shadow:
 3px 3px 8px rgba(0,0,0,0.4);
 margin-top:40px;
 animation:brilloGracias 3s infinite alternate;
+}
+
+@keyframes brilloGracias{
+0%{
+filter:brightness(1);
+transform:scale(1);
+}
+100%{
+filter:brightness(1.3);
+transform:scale(1.05);
 }
 }
 
@@ -586,7 +619,7 @@ animation:brilloGracias 3s infinite alternate;
 
 </div>		
 
-<audio id="musica" loop playsinline>
+<audio id="musica" loop playsinline preload="auto">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -599,7 +632,7 @@ animation:brilloGracias 3s infinite alternate;
 
 <div class="seccion">
 <div class="foto">
-<img src="Emili.jpg">
+<img src="Emili.jpg" loading="lazy">
 </div>
 </div>
 
@@ -612,7 +645,7 @@ animation:brilloGracias 3s infinite alternate;
 <p class="brilloTexto">Leticia Lugo</p>
 <p class="brilloTexto">Horacio Vargas</p>
 
-<img src="pps.jpg" class="imagenPapás">
+<img src="pps.jpg" class="imagenPapás" loading="lazy">
 
 <br>
 
@@ -628,14 +661,14 @@ animation:brilloGracias 3s infinite alternate;
 <div class="seccion">
 
 <div class="wanted">
-<img src="cart.png">
+<img src="cart.png" loading="lazy">
 
 <div class="wantedText">
 Vaqueras y vaqueros<br>
-para que sean complices<br>
+para que sean cómplices<br>
 de una gran fiesta.
 <br><br>
-Asi que, Ponte tu sombrero 🤠, <br> amarra bien tus botas👢, <br> ensilla tu caballo🐎
+Así que ponte tu sombrero 🤠, <br> amarra bien tus botas👢, <br> ensilla tu caballo🐎
 y ven a celebrar con nosotros este día tan especial. <br><br>
 ¡YEEEHAW!
 </div>
@@ -684,25 +717,26 @@ y ven a celebrar con nosotros este día tan especial. <br><br>
 <div class="lugar">Ubicación del Evento 📌<br></div>
 
 <div class="map">
-<br><br><iframe src="https://www.google.com/maps?q=20.452201,-98.498321&z=16&output=embed"
-width="100%" height="100%" style="border:0;border-radius:15px;">
+<iframe src="https://www.google.com/maps?q=20.452201,-98.498321&z=16&output=embed"
+width="100%" height="100%" loading="lazy" style="border:0;border-radius:15px;"
+referrerpolicy="no-referrer-when-downgrade">
 </iframe>
 </div>
 
 </div>
 
-<br><br><img src="vaquita.png" class="decoracion">
+<br><br><img src="vaquita.png" class="decoracion" loading="lazy">
 
 <div class="seccion">
-<p class="confirmar">Es importante tu presencia, por eso hazme saber que vendras</p>
+<p class="confirmar">Es importante tu presencia, por eso hazme saber que vendrás.</p>
 <button onclick="window.open('https://wa.me/5217296305132?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Emili%20🤠🎉')">
-<i calss="fa-brands fa-whatsapp"></i>
+<i class="fa-brands fa-whatsapp"></i>
 Confirmar asistencia
 </button>
 </div>
 
 <div class="seccion">
-<p class="confirmar">Comparte tus recuedos del dia, ya sea con tu familia, amigos y/o conmigo. Serán muy <br> imoportantes para mi en el futuro.</p>
+<p class="confirmar">Comparte tus recuerdos del día, ya sea con tu familia, amigos y/o conmigo. Serán muy <br> importantes para mí en el futuro.</p>
 <button onclick="window.open('https://photos.google.com/u/1/share/AF1QipP_0omJSYbimD5I_N8dkiUu6t-Mbg75RT0JO--mfpJb5x8w5P0H4HPfUKTFRGhZrg?hl=es&key=Z01ZZXA4UDJIYUJIdFFBTlE2UHI3TzJ2TUttWlNn')">
 Agregar fotos 📷
 </button>
@@ -723,6 +757,8 @@ function abrirCarta(el){
 el.classList.add("abrir");
 
 crearMagia();
+
+explosionSello();
 
 document.getElementById("musica").play();
 
@@ -780,7 +816,7 @@ document.body.appendChild(g);
 
 setTimeout(()=>g.remove(),12000);
 
-},900);
+},1100);
 
 }
 
@@ -788,7 +824,7 @@ setTimeout(()=>g.remove(),12000);
 
 function reventar(g){
 
-for(let i=0;i<25;i++){
+for(let i=0;i<20;i++){
 
 let c=document.createElement("div");
 c.className="confeti";
@@ -853,7 +889,7 @@ function lanzarFuego(x,y){
 
 const emojis=["✨","💥"];
 
-for(let i=0;i<35;i++){
+for(let i=0;i<25;i++){
 
 let f=document.createElement("div");
 f.className="fuegoDisney";
@@ -893,6 +929,29 @@ lanzarFuego(x,y);
 
 },1400);
 
+}
+
+/* EXPLOSION SELLO */
+
+function explosionSello(){
+
+let sello=document.querySelector(".selloSheriff");
+let rect=sello.getBoundingClientRect();
+
+for(let i=0;i<25;i++){
+
+let s=document.createElement("div");
+s.className="sparkle";
+s.innerHTML="✨";
+
+s.style.left=(rect.left+rect.width/2)+"px";
+s.style.top=(rect.top+rect.height/2)+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),1000);
+
+}
 
 }
 
